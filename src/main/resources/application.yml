@@ -1,0 +1,43 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: medicare
+  datasource:
+    url: jdbc:mysql://localhost:3306/medicare?useSSL=false&serverTimezone=Asia/Ho_Chi_Minh&allowPublicKeyRetrieval=true
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQLDialect
+  mail:
+    host: sandbox.smtp.mailtrap.io
+    port: 2525
+    username: ${MAIL_USERNAME:}
+    password: ${MAIL_PASSWORD:}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+medicare:
+  jwt:
+    secret: ${JWT_SECRET:medicare-secret-key-phai-dai-it-nhat-32-ky-tu-ok-nhe-ban}
+    expiration-minutes: 60
+  booking:
+    slot-minutes: 30
+    max-advance-days: 14
+    min-advance-hours: 2
+    max-active-appointments: 3
+    confirm-timeout-hours: 24
+    cancel-min-hours: 2
+    checkin-minutes-before: 30
+    no-show-after-minutes: 15
